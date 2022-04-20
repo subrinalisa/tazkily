@@ -638,6 +638,7 @@ Pricing
 .pricing-single {
     border-radius: 20px;
     margin-top: 50px;
+    @include transition();
 
     .card-header {
         padding: 20px;
@@ -683,7 +684,9 @@ Pricing
         }
     }
 }
-
+.pricing-single:hover{
+    transform: translateY(5px);
+}
 .pricing-single.active {
     color: #fff;
     background: url(../images/background/full-card.png) no-repeat top/cover;

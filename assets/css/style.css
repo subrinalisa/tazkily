@@ -707,6 +707,8 @@ Pricing
 .pricing-single {
   border-radius: 20px;
   margin-top: 50px;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .pricing-single .card-header {
@@ -753,6 +755,11 @@ Pricing
 
 .pricing-single .card-body a {
   margin-top: 16px;
+}
+
+.pricing-single:hover {
+  -webkit-transform: translateY(5px);
+          transform: translateY(5px);
 }
 
 .pricing-single.active {
