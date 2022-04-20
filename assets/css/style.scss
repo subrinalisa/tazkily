@@ -1,0 +1,963 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+@font-face {
+    font-family: Satoshi;
+    src: url(../fonts/Satoshi.otf);
+}
+
+/*----------------
+Author       : Subrina Sultana
+Template Name: Tazkily
+Version      : 1.0
+*----------------/
+/*---------------
+Table of contents:
+01. Global
+02. Preloader
+03. Scroll Up
+04. Navigation
+05. Banner
+06. Intro
+07. About
+09. Pricing
+09. Blog
+10. Social
+11. Review
+12. Footer
+13. Responsive
+---------------*/
+/*--------------------------------------------------------------------
+Global
+---------------------------------------------------------------------*/
+$text-color: #666;
+$purple: #8828FF;
+$navy: #20184E;
+$gray:#ADABB7;
+$body: #e5e5e52b;
+$footer:#260055;
+$scrollbar-color: $purple;
+
+@mixin fonts($size, $weight, $color) {
+    font-size: $size;
+    font-weight: $weight;
+    color: $color;
+}
+
+@mixin transition {
+    -moz-transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+body {
+    font-family: 'Space Grotesk', sans-serif;
+    @include fonts(16px, 400, $text-color);
+    background: $body;
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: $scrollbar-color;
+    border-radius: 8px;
+}
+
+h1 {
+    font-size: 48px;
+}
+
+h2 {
+    font-size: 36px;
+}
+
+h3 {
+    font-size: 28px;
+}
+
+h4 {
+    font-size: 22px;
+}
+
+h5 {
+    font-size: 18px;
+}
+
+h6 {
+    font-size: 16px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: $navy;
+}
+
+p {
+    font-family: Satoshi;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+figure {
+    margin: 0;
+}
+
+small {
+    font-size: 12px;
+    display: block;
+}
+
+a,
+a:hover {
+    color: $purple;
+    text-decoration: none;
+}
+
+i,
+svg {
+    display: inline-block;
+    pointer-events: none;
+}
+
+img {
+    max-width: 100%;
+}
+
+ul,
+ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.btn {
+    font-family: 'Space Grotesk', sans-serif;
+    text-align: center;
+    @include transition;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+}
+
+.btn-light,
+.btn-purple,
+.btn-purple-outline {
+    @include fonts(18px, 500, $purple);
+    padding: 8px 16px !important;
+    border: 1px solid $purple;
+    border-radius: 40px;
+    min-width: 153px;
+}
+
+.btn-light {
+    border-color: transparent;
+    background: #F8F2FF;
+}
+
+.btn-light::before,
+.btn-purple-outline::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: $purple;
+    transform: scaleX(0);
+    transform-origin: 0 50%;
+    @include transition();
+}
+
+.btn-purple-outline {
+    background: transparent;
+}
+
+.btn-light:hover::before,
+.btn-purple-outline:hover::before {
+    transform: scaleX(1);
+}
+
+.btn-light:hover,
+.btn-purple-outline:hover {
+    color: #fff;
+}
+
+.btn-purple {
+    color: #fff;
+    background: $purple;
+}
+
+.btn-purple:hover {
+    color: $purple;
+    background: transparent;
+}
+
+.btn:focus,
+.navbar-toggler:focus,
+.form-control:focus,
+.form-select:focus,
+.accordion-button:focus {
+    box-shadow: none;
+}
+
+.navbar-toggler {
+    color: $purple;
+}
+
+.card {
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.owl-carousel .owl-item img {
+    width: fit-content;
+}
+
+.owl-theme .owl-nav.disabled+.owl-dots {
+    margin-top: 20px;
+}
+
+.owl-theme .owl-dots,
+.owl-theme .owl-nav {
+    text-align: right;
+}
+
+.owl-prev,
+.owl-next {
+    color: #fff !important;
+    background: $gray !important;
+    width: 20px;
+    height: 20px;
+    line-height: 20px !important;
+    border-radius: 50% !important;
+    @include transition();
+}
+
+.owl-prev:hover,
+.owl-next:hover {
+    background: $purple !important;
+}
+
+/*--------------------------------------------------------------------
+Preloader
+---------------------------------------------------------------------*/
+#preloader {
+    background: #fff;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+}
+
+.loader-wrap {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.loader {
+    width: 300px;
+    height: 100px;
+    margin: 30px auto 0;
+    position: relative;
+
+    span {
+        background-color: $purple;
+        height: 20px;
+        width: 20px;
+        border-radius: 5rem;
+        transform: translateX(-50%) translateY(-50%);
+        position: absolute;
+        top: 52.5%;
+        left: 150px;
+        transition: all 0.15s ease-in-out;
+    }
+
+    span:nth-child(1) {
+        left: 80px;
+        animation: waveUp 2s, smallExtend 2s;
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: infinite;
+    }
+
+    span:nth-child(2) {
+        left: 115px;
+        animation: waveUp 2s, largeExtend 2s;
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: infinite;
+        animation-delay: 0.15s;
+    }
+
+    span:nth-child(3) {
+        animation: waveUp 2s, smallExtend 2s;
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: infinite;
+        animation-delay: 0.3s;
+    }
+
+    span:nth-child(4) {
+        left: 185px;
+        animation: waveUp 2s, largeExtend 2s;
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: infinite;
+        animation-delay: 0.45s;
+    }
+
+    span:nth-child(5) {
+        left: 220px;
+        animation: waveUp 2s, smallExtend 2s;
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: infinite;
+        animation-delay: 0.6s;
+    }
+}
+
+@keyframes waveUp {
+
+    0%,
+    15% {
+        top: 50%;
+    }
+
+    45%,
+    65% {
+        top: 42.5%;
+    }
+
+    85%,
+    100% {
+        top: 50%;
+    }
+}
+
+@keyframes smallExtend {
+
+    0%,
+    8% {
+        background-color: $purple;
+        height: 20px;
+    }
+
+    14%,
+    34% {
+        background-color: $navy;
+        height: 47.5px;
+    }
+
+    46%,
+    100% {
+        background-color: $purple;
+        height: 20px;
+    }
+}
+
+@keyframes largeExtend {
+
+    0%,
+    8% {
+        background-color: $purple;
+        height: 20px;
+    }
+
+    14%,
+    34% {
+        background-color: $navy;
+        height: 82.5px;
+    }
+
+    46%,
+    100% {
+        background-color: $purple;
+        height: 20px;
+    }
+}
+
+/*--------------------------------------------------------------------
+Scroll Up
+---------------------------------------------------------------------*/
+#scrollUp {
+    color: #fff !important;
+    line-height: 30px;
+    padding: 0;
+    border-radius: 5px 5px 0 0;
+    background: $purple;
+    height: 30px;
+    margin-bottom: 0;
+    @include transition();
+    z-index: 100 !important;
+}
+
+#scrollUp:hover {
+    height: 50px;
+}
+
+/*--------------------------------------------------------------------
+Navigation
+---------------------------------------------------------------------*/
+header {
+    background: url(../images/background/header.png) no-repeat bottom/cover;
+    position: relative;
+}
+
+#navigation {
+    padding: 20px 0 0;
+}
+
+#mainav {
+    .nav-link {
+        @include fonts(18px, 400, #C08DFF);
+        padding: 0 0 8px;
+        margin: 0 20px;
+        @include transition();
+        position: relative;
+        z-index: 1;
+    }
+
+    .nav-link::before {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        left: 50%;
+        right: 50%;
+        bottom: 0;
+        background: $purple;
+        height: 2px;
+        transition-property: left, right;
+        @include transition();
+    }
+
+    .nav-link.active,
+    .nav-link:hover {
+        color: $purple;
+    }
+
+    .nav-link:hover::before {
+        left: 0;
+        right: 0;
+    }
+
+    .login {
+        font-weight: 500;
+        color: $purple;
+        margin: auto;
+    }
+
+    .btn-purple-outline {
+        margin-left: 20px;
+    }
+}
+
+/*--------------------------------------------------------------------
+Banner
+---------------------------------------------------------------------*/
+.banner {
+    padding: 100px 0 200px;
+    position: relative;
+}
+
+.banner-single {
+    h1 {
+        @include fonts(65px, 700, #fff);
+        margin-bottom: 16px;
+    }
+
+    p {
+        font-size: 20px;
+        color: #fff;
+        margin-bottom: 30px;
+        max-width: 500px;
+    }
+}
+
+.banner-img {
+    max-width: 50%;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+}
+
+/*--------------------------------------------------------------------
+Intro
+---------------------------------------------------------------------*/
+.pt-100 {
+    padding: 100px 0 0;
+}
+
+.common-title {
+    @include fonts(48px, 700, $navy);
+    text-transform: capitalize;
+    margin-bottom: 16px;
+}
+
+.common-text {
+    font-size: 18px;
+}
+
+.intro-single a {
+    margin-top: 20px;
+    min-width: 239px;
+}
+
+/*--------------------------------------------------------------------
+About
+---------------------------------------------------------------------*/
+.about {
+    padding: 100px 0 0;
+}
+
+.chat-single {
+    hr {
+        width: 44px;
+        height: 9px;
+        background: $purple;
+        border-radius: 57px;
+        opacity: 1;
+        margin-bottom: 0;
+    }
+}
+
+.chat-single:nth-child(even) {
+    margin: 30px 0;
+    justify-content: flex-end;
+
+    hr {
+        float: right;
+    }
+
+    .chat-details:before {
+        left: 95%;
+        border-left: 26px solid #fff;
+        border-right: none;
+    }
+}
+
+.chat-details {
+    padding: 20px;
+    background: #fff;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    border-radius: 20px;
+    position: relative;
+    z-index: 1;
+
+    p {
+        font-family: 'Nunito', sans-serif;
+    }
+
+    h3,
+    small {
+        margin-top: 16px;
+    }
+}
+
+.chat-details:before {
+    content: "";
+    position: absolute;
+    right: 95%;
+    bottom: 0;
+    width: 0;
+    height: 0;
+    border-top: 13px solid transparent;
+    border-right: 26px solid #fff;
+    border-bottom: 13px solid transparent;
+    border-radius: 5px;
+    z-index: -1;
+}
+
+.common-subtitle {
+    font-family: 'Nunito', sans-serif;
+    @include fonts(16px, 700, $navy);
+}
+
+.last-seen {
+    font-family: 'Nunito', sans-serif;
+    @include fonts(12px, 600, $gray);
+}
+
+/*--------------------------------------------------------------------
+Pricing
+---------------------------------------------------------------------*/
+.pricing {
+    padding: 150px 0;
+    position: relative;
+    background: #fff;
+
+    svg {
+        position: relative;
+        display: block;
+        width: calc(153% + 1.3px);
+        height: 100px;
+    }
+
+    .shape-fill {
+        fill: $body;
+    }
+}
+
+.pricing-top-shape {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.pricing-bottom-shape {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.pricing-single {
+    border-radius: 20px;
+    margin-top: 50px;
+
+    .card-header {
+        padding: 20px;
+        background: url(../images/background/card.png) no-repeat top/cover;
+
+        h3 {
+            @include fonts(24px, 700, #fff);
+            margin-bottom: 12px;
+        }
+
+        h4 {
+            @include fonts(18px, 400, #fff);
+
+            span {
+                font-size: 48px;
+                font-weight: 700;
+            }
+
+            ;
+        }
+    }
+
+    .card-body {
+        padding: 20px;
+
+        p {
+            margin-bottom: 8px;
+
+            i {
+                color: #fff;
+                text-align: center;
+                background: $purple;
+                border-radius: 50%;
+                width: 16px;
+                height: 16px;
+                line-height: 16px;
+                margin-right: 8px;
+            }
+        }
+
+        a {
+            margin-top: 16px;
+        }
+    }
+}
+
+.pricing-single.active {
+    color: #fff;
+    background: url(../images/background/full-card.png) no-repeat top/cover;
+
+    .card-header {
+        padding: 0 20px;
+        background: none;
+
+        button {
+            float: right;
+            background: #FFDA58;
+            border-radius: 0 0 10px 10px;
+        }
+    }
+}
+
+.pricing-toggle {
+    text-align: center;
+    margin-top: 30px;
+
+    .form-check {
+        display: inline-block;
+        margin: auto;
+    }
+
+    .form-check-input {
+        vertical-align: middle;
+        margin-top: 8px;
+    }
+
+    .form-switch .form-check-input {
+        width: 60px;
+        background-image: url(../images/background/switch.png);
+    }
+
+    .form-check-input:checked {
+        background-color: transparent;
+        border-color: $purple;
+    }
+
+    a {
+        font-family: Satoshi;
+        @include fonts(18px, 400, $text-color);
+    }
+}
+
+/*--------------------------------------------------------------------
+Blog
+---------------------------------------------------------------------*/
+.blog-single {
+    margin-top: 50px;
+    border-radius: 20px;
+
+    img {
+        margin-bottom: 16px;
+    }
+
+    small,
+    span {
+        font-family: 'Nunito', sans-serif;
+        font-size: 14px;
+        color: $gray;
+    }
+
+    span {
+        color: $purple;
+        display: block;
+    }
+
+    h3 {
+        @include fonts(20px, 700, $navy);
+        margin-bottom: 16px;
+    }
+}
+
+/*--------------------------------------------------------------------
+Social
+---------------------------------------------------------------------*/
+.social {
+    padding: 100px 0 0;
+}
+
+/*--------------------------------------------------------------------
+Review
+---------------------------------------------------------------------*/
+.review {
+    padding: 150px 0 100px;
+    background: url(../images/background/review.png) no-repeat top/cover;
+}
+
+.review-single {
+    p {
+        margin-bottom: 16px;
+    }
+
+    .img {
+        margin-right: 16px;
+    }
+
+    .common-subtitle {
+        color: $purple;
+    }
+}
+
+/*--------------------------------------------------------------------
+Footer
+---------------------------------------------------------------------*/
+footer {
+    color: $gray;
+    padding: 100px 0;
+    background-color: $footer;
+}
+
+.footer-top {
+    h3 {
+        @include fonts(20px, 700, #fff);
+        margin-bottom: 30px;
+    }
+
+    .list-inline-item {
+        margin-right: 16px;
+
+        a {
+            font-size: 18px;
+        }
+    }
+
+    .list-unstyled {
+        li {
+            margin-top: 8px;
+
+            a {
+                color: $gray;
+            }
+        }
+    }
+
+    .bi-facebook {
+        background: linear-gradient(180deg, #18ACFE 0%, #0163E0 99.7%);
+        -webkit-background-clip: text;
+        -moz-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .bi-twitter {
+        color: #47ACDF;
+    }
+
+    .bi-instagram {
+        background: radial-gradient(75% 75% at 35.71% 75%, #B13589 0%, #C62F94 79.31%, #8A3AC8 100%);
+        -webkit-background-clip: text;
+        -moz-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .fa-linkedin-in {
+        color: #1275B1;
+    }
+}
+
+.footer-bottom {
+    margin-top: 50px;
+
+    a {
+        color: $gray;
+    }
+}
+
+/*--------------------------------------------------------------------
+Responsive
+---------------------------------------------------------------------*/
+// Mobile Screen
+@media (max-width: 767.98px) {
+    header {
+        background-position: top;
+        min-height: 155vh;
+    }
+
+    .banner {
+        padding: 50px 0 120px;
+    }
+
+    .banner-single {
+        margin-bottom: 50px;
+
+        h1 {
+            font-size: 34px;
+        }
+    }
+
+    .banner-img {
+        max-width: 100%;
+        top: 100%;
+    }
+
+    .intro-img {
+        margin-top: 50px;
+    }
+
+    .common-title {
+        font-size: 28px;
+    }
+
+    .chat-single,
+    .chat-single:nth-child(even) {
+        margin-top: 30px;
+    }
+
+    .blog-single h3 {
+        font-size: 16px;
+    }
+
+    .review-single {
+        margin-top: 50px;
+    }
+
+    footer {
+        padding: 50px 0;
+        text-align: center;
+    }
+
+    .footer-top {
+        margin-bottom: 50px;
+    }
+
+    .footer-bottom {
+        text-align: center;
+        margin-top: 16px;
+    }
+}
+
+// Tablet Screen
+@media (max-width: 991.98px) {
+    #navigation {
+        border-bottom: 1px solid #d5d5d5;
+    }
+
+    .logo {
+        margin-bottom: 16px;
+    }
+
+    #mainav {
+        .nav-link {
+            margin: 0;
+        }
+
+        .btn-purple-outline {
+            margin: 8px 0 20px;
+            margin-left: 0;
+        }
+    }
+
+    .banner-single {
+        h1 {
+            font-size: 36px;
+        }
+
+        p {
+            max-width: 400px;
+        }
+    }
+
+    .common-title {
+        font-size: 36px;
+    }
+
+    .footer-top {
+        margin-bottom: 50px;
+    }
+
+    .footer-bottom {
+        text-align: center;
+        margin-top: 16px;
+    }
+}
