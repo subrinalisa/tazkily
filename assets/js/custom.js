@@ -43,6 +43,8 @@
     });
     // AOS
     AOS.init({
+        once: true,
+        disable: 'phone',
         delay: 300,
         duration: 600,
         easing: 'ease',
